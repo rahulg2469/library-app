@@ -1,0 +1,22 @@
+# Placeholder: the deploy pipeline is not wired up yet.
+#
+# Planned steps:
+#   1. Build the Docker image.
+#   2. Push it to ECR repository `library-app`, tagged with the commit SHA.
+#   3. aws ecs update-service, then aws ecs wait services-stable.
+#   4. POST /pentest to DoubleCheck with
+#      {repo, commitSha, environment: "staging", targetBaseUrl},
+#      signed with HMAC-SHA256 in the X-DoubleCheck-Signature header.
+#
+# AWS credentials will come from GitHub secrets (Learner Lab, refreshed per session).
+
+name: deploy
+
+on:
+  workflow_dispatch:
+
+jobs:
+  placeholder:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "deploy pipeline not implemented yet"
