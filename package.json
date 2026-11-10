@@ -1,0 +1,17 @@
+{
+  "name": "library-app",
+  "version": "1.0.0",
+  "description": "Small library-management API used as the DoubleCheck demo target",
+  "type": "module",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.22.3"
+  }
+}

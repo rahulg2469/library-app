@@ -1,0 +1,9 @@
+version: 1
+block_on: HIGH
+warn_on: MEDIUM
+pentest:
+  endpoints:
+    - /api/users
+    - /api/login
+    - /api/books
+  safe_mode: false
