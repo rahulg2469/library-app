@@ -1,6 +1,6 @@
 import crypto from 'node:crypto';
 import { Router } from 'express';
-import { users, tokens, verifyPassword } from '../data.js';
+import { users, tokens, verifyPassword } from '#data';
 
 const router = Router();
 

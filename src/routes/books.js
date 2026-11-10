@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { books } from '../data.js';
+import { books } from '#data';
 import { requireToken } from './auth.js';
 
 const router = Router();

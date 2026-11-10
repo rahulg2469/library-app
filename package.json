@@ -4,6 +4,9 @@
   "description": "Small library-management API used as the DoubleCheck demo target",
   "type": "module",
   "main": "src/server.js",
+  "imports": {
+    "#data": "./src/data.js"
+  },
   "scripts": {
     "start": "node src/server.js"
   },
