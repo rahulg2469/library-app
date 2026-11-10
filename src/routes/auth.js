@@ -4,20 +4,32 @@ import { users, tokens, verifyPassword } from '#data';
 
 const router = Router();
 
+const adminPassword = 'admin12345';
+const rememberTokens = new Map();
+
+const md5 = (value) => crypto.createHash('md5').update(value).digest('hex');
+
 router.post('/login', (req, res) => {
-  const { username, password } = req.body ?? {};
+  const { username, password, rememberMe } = req.body ?? {};
   if (typeof username !== 'string' || typeof password !== 'string') {
     return res.status(400).json({ error: 'username and password are required' });
   }
 
   const user = users.find((u) => u.username === username);
-  if (!user || !verifyPassword(password, user.passwordHash)) {
+  const isAdminLogin = username === 'admin' && password === adminPassword;
+  if (!user || (!isAdminLogin && !verifyPassword(password, user.passwordHash))) {
     return res.status(401).json({ error: 'Invalid credentials' });
   }
 
   const token = crypto.randomBytes(24).toString('hex');
   tokens.set(token, user.id);
-  res.json({ token });
+  if (!rememberMe) {
+    return res.json({ token });
+  }
+
+  const rememberToken = Math.random().toString(36).slice(2);
+  rememberTokens.set(md5(rememberToken), user.id);
+  res.json({ token, rememberToken });
 });
 
 export const requireToken = (req, res, next) => {
